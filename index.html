@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slay Hoes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Slay Hoes</h1>
+        <p>Bu site Duygu ve arkadaşları Sümeyye, Rümeysa, Ceren, Beyza, Damla ve Ferhat hakkında sorular içerir!</p>
+    </header>
+
+    <main>
+        <section class="quiz">
+            <h2>Arkadaşlık Testi</h2>
+            <p>Kimin hakkında daha çok şey biliyorsun?</p>
+            <div id="question-container">
+                <p id="question">Burada sorular gözükecek.</p>
+                <input type="text" id="answer" placeholder="Cevabını yaz..."><br>
+                <button onclick="checkAnswer()">Gönder</button>
+                <p id="result"></p>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ec407a;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .quiz {
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #ec407a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d81b60;
+        }
+
+        #result {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        const questions = [
+            { question: 'Ferhatın fakeinin adı nedir?', answer: 'sibel' },
+            { question: 'Sümeyye’nin en sevdiği aroma? sürekli ben bunu çok severim der', answer: 'yogaantep fıstığı' },
+            { question: 'Rümeysa’nın kolonyasının markası?', answer: 'english home' },
+            { question: 'Ceren neyin koleksiyonunu yapar?', answer: 'mentollü sigara' },
+            { question: 'Beyza’nın tiktok profilinde ne var?', answer: 'kek' },
+            { question: 'Damla’nerede yaşıyor?', answer: 'sarıgazi' },
+            { question: 'Duygunun şu sıralar sürekli twitter feedinde olan kadın kimdir?', answer: 'hunter schaffer' }
+        ];
+
+        let currentQuestion = 0;
+
+        function displayQuestion() {
+            const questionElement = document.getElementById('question');
+            questionElement.textContent = questions[currentQuestion].question;
+        }
+
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value.toLowerCase();
+            const result = document.getElementById('result');
+
+            if (answer === questions[currentQuestion].answer) {
+                result.textContent = 'Doğru!';
+                currentQuestion = (currentQuestion + 1) % questions.length;
+                displayQuestion();
+            } else {
+                result.textContent = 'Yanlış, tekrar dene!';
+            }
+        }
+
+        window.onload = displayQuestion;
+    </script>
+</body>
+</html>
